@@ -3,7 +3,6 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입 - Bootstrap</title>
 
@@ -38,39 +37,39 @@
     <div class="input-form-backgroud row">
         <div class="input-form col-md-12 mx-auto">
             <h4 class="mb-3">회원가입</h4>
-            <form method="post" class="validation-form" novalidate>
+            <form method="post" enctype="application/json" class="validation-form" novalidate >
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="userId">아이디</label>
-                        <input type="text" class="form-control" id="userId" placeholder="id" value="" required>
+                        <input type="text" class="form-control" id="userId" placeholder="id" name="userId" required>
 
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="password">패스워드</label>
-                        <input type="text" class="form-control" id="password" placeholder="password" value="" required>
+                        <input type="text" class="form-control" id="password" placeholder="password" name="password" required>
 
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="userName">이름</label>
-                        <input type="text" class="form-control" id="userName" placeholder="홍길동" value="" required>
+                        <input type="text" class="form-control" id="userName" placeholder="홍길동" name="userName" required>
 
                     </div>
                     <div class="col-md-6 mb-3">
                         <label for="password">생년월일</label>
-                        <input type="text" class="form-control" id="birth" placeholder="990101" value="" required>
+                        <input type="text" class="form-control" id="birth" placeholder="990101" name="birth" required>
 
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="email">전화번호</label>
-                    <input type="text" class="form-control" id="phone" placeholder="010-0000-0000" required>
+                    <input type="text" class="form-control" id="phone" placeholder="010-0000-0000" name="phone" required>
                 </div>
 
                 <div class="mb-3">
                     <label for="email">이메일</label>
-                    <input type="email" class="form-control" id="email" placeholder="you@example.com" required>
+                    <input type="email" class="form-control" id="email" placeholder="you@example.com" name="email" required>
                 </div>
 
                 <button class="btn btn-primary btn-lg btn-block">가입 신청</button>
