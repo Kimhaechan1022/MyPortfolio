@@ -2,36 +2,26 @@ package com.myportfolio.user.controller;
 
 
 import com.myportfolio.user.model.RegisterInput;
-import com.myportfolio.user.model.User;
-import com.myportfolio.user.repository.UserRepository;
+import com.myportfolio.user.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @RequiredArgsConstructor
 @Controller
 public class RegisterController {
 
 
-    private final UserRepository userRepository;
+    private final UserService userService;
 
     @PostMapping("/user/register")
-    public String  registerSubmit(RegisterInput registerInput){
+    public String registerSubmit(Model model, RegisterInput registerInput) {
 
-        User newUser = User.builder()
-                .userId(registerInput.getUserId())
-                .password(registerInput.getPassword())
-                .userName(registerInput.getUserName())
-                .birth(registerInput.getBirth())
-                .phone(registerInput.getPhone())
-                .email(registerInput.getEmail())
-                .build();
-        userRepository.save(newUser);
+        boolean isRegisterSuccessFull = userService.register(registerInput);
+        model.addAttribute("isRegisterSuccessFull", isRegisterSuccessFull);
 
-        return "user/register";
+        return "user/register_success";
     }
 
 }

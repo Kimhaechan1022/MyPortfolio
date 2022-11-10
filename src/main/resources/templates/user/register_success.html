@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title> result of register</title>
+</head>
+
+<body>
+
+    <div th:if= "${isRegisterSuccessFull eq true}">
+        <h1> 성공 </h1>
+        <a href="/"> 첫페이지로 돌아가기 </a>
+    </div>
+
+    <div th:if="${isRegisterSuccessFull eq false}">
+        <h1> 실패 </h1>
+        <a href="register"> 회원가입 다시시도하기 </a>
+    </div>
+
+</body>
