@@ -11,6 +11,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -32,12 +33,12 @@ public class UserServiceImpl implements UserService {
         if(optionalUser.isPresent()){
             return false;
         }
-
+        String encPassword = BCrypt.hashpw(registerInput.getPassword(), BCrypt.gensalt());
         String emailAuthenticationKey = UUID.randomUUID().toString();
 
         UserInformation newUser = UserInformation.builder()
                 .userId(registerInput.getUserId())
-                .password(registerInput.getPassword())
+                .password(encPassword)
                 .userName(registerInput.getUserName())
                 .birth(registerInput.getBirth())
                 .phone(registerInput.getPhone())

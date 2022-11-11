@@ -12,7 +12,7 @@ public class UserAuthenticationFailureHandler extends SimpleUrlAuthenticationFai
     @Override
     public void onAuthenticationFailure(HttpServletRequest request, HttpServletResponse response, AuthenticationException exception) throws IOException, ServletException {
         setUseForward(true);
-        setDefaultFailureUrl("/user/login?error=ture");
+        setDefaultFailureUrl("/user/login?error=true");
         request.setAttribute("errorMessage", "로그인 실패");
 
 

@@ -18,6 +18,11 @@ public class RegisterController {
 
     private final UserService userService;
 
+    @GetMapping("/user/register")
+    public String registerPage(){
+        return "user/register";
+    }
+
     @PostMapping("/user/register")
     public String registerSubmit(Model model, RegisterInput registerInput) {
 

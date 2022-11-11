@@ -4,7 +4,7 @@ import com.myportfolio.components.MailComponents;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequiredArgsConstructor
@@ -17,14 +17,11 @@ public class MainController {
         return "user/startPage";
     }
 
-    @GetMapping("/user/register")
-    public String registerPage(){
-        return "user/register";
+    @GetMapping("/user/test")
+    @ResponseBody
+    public String testSecurity(){
+        return "test";
     }
 
-    @RequestMapping("/user/login")
-    public String loginPage(){
-        return "user/login";
-    }
 
 }
