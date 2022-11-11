@@ -1,8 +1,11 @@
 package com.myportfolio.user.repository;
 
-import com.myportfolio.user.model.User;
+import com.myportfolio.user.model.UserInformation;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface UserRepository extends JpaRepository<User, String> {
+import java.util.Optional;
+
+public interface UserRepository extends JpaRepository<UserInformation, String> {
+    Optional<UserInformation> findByEmailAuthenticationKey(String emailAuthenticationKey);
 
 }

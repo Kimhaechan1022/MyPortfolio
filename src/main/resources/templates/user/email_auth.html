@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title> result of Authentication</title>
+</head>
+
+<body>
+    <div th:if="${isSuccessFull eq true}">
+        Authentication success
+    </div>
+
+    <div th:if="${isSuccessFull eq false}">
+        Authentication failed
+    </div>
+
+</div>
+</body>

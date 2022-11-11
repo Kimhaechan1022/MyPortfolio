@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            min-height: 100vh;
+            background: -webkit-gradient(linear, left bottom, right top, from(#5c636a), to(#1e2125));
+
+        }
+        .input-form {
+            max-width: 300px;
+
+            margin-top: 80px;
+            padding: 32px;
+
+            background: #fff;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+            -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="input-form-backgroud row">
+        <div class="input-form col-md-12 mx-auto">
+            <h4 class="mb-3">로그인</h4>
+            <form method="post" class="validation-form" novalidate >
+                <div class="mb-3">
+                    <label for="id">아이디</label>
+                    <input type="text" class="form-control" id="id" placeholder="id" name="id" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="password">패스워드</label>
+                    <input type="password" class="form-control" id="password" placeholder="password" name="password" required>
+                </div>
+
+                <button class="btn btn-primary btn-lg btn-block">로그인</button>
+
+                <p><a href="/user/register"> 회원가입 </a></p>
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

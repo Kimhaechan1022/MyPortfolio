@@ -8,14 +8,13 @@ import lombok.RequiredArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.validation.constraints.Email;
 
 @Builder
 @RequiredArgsConstructor
 @AllArgsConstructor
 @Data
 @Entity
-public class User{
+public class UserInformation {
 
     @Id
     private String userId;
@@ -29,6 +28,9 @@ public class User{
     private String phone;
 
     private String email;
+
+    private boolean isEmailAuthentication;
+    private String emailAuthenticationKey;
 
 
 }
