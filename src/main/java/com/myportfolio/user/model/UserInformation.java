@@ -32,5 +32,7 @@ public class UserInformation {
     private boolean isEmailAuthentication;
     private String emailAuthenticationKey;
 
+    private String resetPasswordKey;
+
 
 }

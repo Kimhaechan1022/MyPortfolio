@@ -3,6 +3,7 @@ package com.myportfolio.user.service.impl;
 import com.myportfolio.components.MailComponents;
 import com.myportfolio.user.exceptions.UserEmailNotAuthenticationException;
 import com.myportfolio.user.model.RegisterInput;
+import com.myportfolio.user.model.ResetPasswordInput;
 import com.myportfolio.user.model.UserInformation;
 import com.myportfolio.user.repository.UserRepository;
 import com.myportfolio.user.service.UserService;
@@ -70,6 +71,25 @@ public class UserServiceImpl implements UserService {
         userRepository.save(resultUser);
 
         return true;
+    }
+
+    @Override
+    public boolean sendResetPassword(ResetPasswordInput resetPasswordInput) {
+        Optional<UserInformation> optionalUserInformation = userRepository.findByUserIdAndUserName(resetPasswordInput.getUserId(),resetPasswordInput.getUserName());
+        if(!optionalUserInformation.isPresent()){
+            throw new UsernameNotFoundException("회원 정보가 존재하지 않습니다.");
+        }
+        UserInformation userInformation = optionalUserInformation.get();
+
+        String resetUuid = UUID.randomUUID().toString();
+
+        userInformation.setResetPasswordKey(resetUuid);
+        userRepository.save(userInformation);
+
+//        String email = userInformation.getEmail()
+//        뭔가 이상함 여기 부터 다시 수정
+
+        return false;
     }
 
     @Override
