@@ -39,7 +39,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/",
                         "/user/login",
                         "/user/register",
-                        "/user/findPassword")
+                        "/user/findPassword",
+                        "/user/resetPassword")
                 .permitAll();
         super.configure(http);
         http.formLogin()

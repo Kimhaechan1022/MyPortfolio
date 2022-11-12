@@ -9,4 +9,6 @@ public interface UserService extends UserDetailsService {
     boolean emailAuthentication(String emailAuthenticationKey);
 
     boolean sendResetPassword(ResetPasswordInput resetPasswordInput);
+
+    boolean resetPassword(String resetPasswordKey, String password, String rePassword);
 }

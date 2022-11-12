@@ -1,6 +1,7 @@
 package com.myportfolio.user.service.impl;
 
 import com.myportfolio.components.MailComponents;
+import com.myportfolio.user.exceptions.PasswordNotSameException;
 import com.myportfolio.user.exceptions.UserEmailNotAuthenticationException;
 import com.myportfolio.user.model.RegisterInput;
 import com.myportfolio.user.model.ResetPasswordInput;
@@ -86,10 +87,12 @@ public class UserServiceImpl implements UserService {
         userInformation.setResetPasswordKey(resetUuid);
         userRepository.save(userInformation);
 
-//        String email = userInformation.getEmail()
-//        뭔가 이상함 여기 부터 다시 수정
-
-        return false;
+        String email = optionalUserInformation.get().getEmail();
+        String subject = "MyPortfolio, 비밀번호 초기화 메일 입니다.";
+        String text = "아래의 링크를 클릭하여 비밀번호 초기화를 진행해 주세요\n"
+                + "http://localhost:1234/user/resetPassword?resetPasswordKey=" +resetUuid;
+        mailComponents.sendMail(email,subject,text);
+        return true;
     }
 
     @Override
@@ -109,5 +112,23 @@ public class UserServiceImpl implements UserService {
 
 
         return new User(userInformation.getUserId(),userInformation.getPassword(),grantedAuthorityList);
+    }
+
+    @Override
+    public boolean resetPassword(String resetPasswordKey, String password, String rePassword){
+        if(!password.equals(rePassword)){
+            throw new PasswordNotSameException("패스워드와 재입력 패스워드가 동일하지 않습니다.");
+        }
+        Optional<UserInformation> optionalUserInformation = userRepository.findByResetPasswordKey(resetPasswordKey);
+        if(!optionalUserInformation.isPresent()){
+            throw new UsernameNotFoundException("회원 정보가 존재하지 않습니다.");
+        }
+        UserInformation passwordResetUser = optionalUserInformation.get();
+
+        String encPassword = BCrypt.hashpw(password, BCrypt.gensalt());
+        passwordResetUser.setPassword(encPassword);
+        userRepository.save(passwordResetUser);
+
+        return true;
     }
 }
