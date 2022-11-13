@@ -20,6 +20,10 @@ public class MainController {
     public String testSecurity() {
         return "test";
     }
+    @GetMapping("/personal/home")
+    public String personalHome(){
+        return "/personal/home";
+    }
 
 
 }

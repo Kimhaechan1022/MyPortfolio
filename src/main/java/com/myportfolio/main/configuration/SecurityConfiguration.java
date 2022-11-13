@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -31,9 +32,20 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Override
+    public void configure(WebSecurity web) throws Exception {
+        // 이미지 리소스 폴더 보안 활성화
+        web.ignoring().antMatchers("/imgs/**");
+        web.ignoring().antMatchers("/css/**");
+        web.ignoring().antMatchers("/asserts/**");
+        web.ignoring().antMatchers("/js/**");
+    }
+
+    @Override
     protected void configure(HttpSecurity http) throws Exception{
 
         http.csrf().disable();
+
+
 
         http.authorizeRequests()
                 .antMatchers("/",
