@@ -21,13 +21,17 @@ spring:
         smtp:
           starttls:
             enable: true
-#    defer-datasource-initialization: true
+  devtools:
+    livereload:
+      enabled: true
+
+#    defAer-datasource-initialization: true
 
 #  sql:
 #    init:
 #      mode: always
 
-server:
-  port: 1234
+#server:
+#  port: 1234
 
 

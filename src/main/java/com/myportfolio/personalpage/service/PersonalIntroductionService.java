@@ -13,4 +13,6 @@ public interface PersonalIntroductionService {
 
     void editPersonalIntroduction(String userId, EditIntroductionInput editIntroductionInput);
 
+    HashMap<String,Object> getEmailAndPhone(String userId);
+
 }

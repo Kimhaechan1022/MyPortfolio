@@ -38,11 +38,13 @@ public class personalPageController {
         String filePathPrefix = "/userprofile/";
         String fileName = currentUserId + "profile.png";
 
-
         model.addAttribute("filepath",filePathPrefix + fileName);
 
-        HashMap<String,Object> modelData = personalIntroductionService.getPersonalIntroductionData(currentUserId);
-        model.addAttribute("introduction",modelData);
+        HashMap<String,Object> IntroductionData = personalIntroductionService.getPersonalIntroductionData(currentUserId);
+        model.addAttribute("introduction",IntroductionData);
+        HashMap<String,Object> emailAndPhone = personalIntroductionService.getEmailAndPhone(currentUserId);
+        model.addAttribute("emailandphone",emailAndPhone);
+
 
         return "/personal/home";
     }
@@ -50,6 +52,7 @@ public class personalPageController {
     public String profile(){
         return "personal/profileConfigPage";
     }
+
     @PostMapping ("/personalPage/profile")
     public String editProfile(Model model, MultipartFile file){
 
@@ -57,9 +60,8 @@ public class personalPageController {
         String currentUserId = authentication.getName();
 
         if(file!= null){
-            String filePathPrefix = "C:/javaPJ/MyPortfolio/src/main/resources/static/userprofile";
+            String filePathPrefix = "C:/javaPJ/MyPortfolio/src/main/resources/static/userprofile/";
             String fileName = currentUserId + "profile.png";
-
             try {
                 File userProfile = new File(filePathPrefix + fileName);
                 FileCopyUtils.copy(file.getInputStream(), new FileOutputStream(userProfile));
@@ -69,6 +71,7 @@ public class personalPageController {
         }
 
         return "redirect:/personal/home";
+
     }
 
     @GetMapping("/personalPage/introduction")
