@@ -20,7 +20,7 @@ import java.util.HashMap;
 
 @RequiredArgsConstructor
 @Controller
-public class personalPageController {
+public class PersonalPageController {
 
     private final PersonalIntroductionService personalIntroductionService;
 
