@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Freelancer - Start Bootstrap Theme</title>
+        <title>MyPortfolio Home</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="/assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
@@ -27,7 +27,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">프로필 사진 설정</a></li>
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/personalPage/profile">프로필 사진 설정</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="/personalPage/introduction">소개글 설정</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">포트폴리오 내용 설정</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#portfolio">이력서 첨부</a></li>
@@ -39,9 +39,9 @@
         <header class="masthead bg-light text-dark text-center">
             <div class="container d-flex align-items-center flex-column">
                 <!-- Masthead Avatar Image-->
-                <img class="masthead-avatar mb-5" src="/assets/img/avataaars.svg" alt="..." />
+                <img class="masthead-avatar mb-5" th:src="${filepath}"  alt="..." />
                 <!-- Masthead Heading-->
-                <h1 class="masthead-heading text-uppercase mb-0">김해찬</h1>
+                <h1 class="masthead-heading text-uppercase mb-0"><span th:text="${introduction.username}"></span></h1>
                 <!-- Icon Divider-->
                 <div class="divider-custom divider-dark">
                     <div class="divider-custom-line"></div>
@@ -49,7 +49,10 @@
                     <div class="divider-custom-line"></div>
                 </div>
                 <!-- Masthead Subheading-->
-                <p class="masthead-subheading font-weight-light mb-0">Web Developer - Spring, Java, Python</p>
+                <p class="masthead-subheading font-weight-light mb-0"><span th:text="${introduction.position}"></span></p>
+                <p class="masthead-avatar font-weight-light mb-0"><span th:text="${introduction.skill}"></span></p>
+                <br>
+                <p class="masthead-avatar font-weight-light mb-0"><span th:text="${introduction.introduction}"></span></p>
             </div>
         </header>
         <!-- Portfolio Section-->

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>소개글 편집</title>
+    <title>프로필 사진 편집</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -36,30 +36,16 @@
 <div class="container">
     <div class="input-form-backgroud row">
         <div class="input-form col-md-12 mx-auto">
-            <h4 class="mb-3">소개글 편집</h4>
-            <form method="post" class="validation-form" novalidate >
+            <h4 class="mb-3">프로필 사진 편집</h4>
+            <form method="post" enctype="multipart/form-data" class="validation-form">
 
                 <div class="mb-3">
-                    <label for="name">이름 또는 별명</label>
-                    <input type="text" class="form-control" id="name" placeholder="홍길동" name="name" required>
+                    <label for="file">첨부파일</label>
+                    <input type="file" class="form-control" id="file" placeholder="file" name="file" required>
                 </div>
 
-                <div class="mb-3">
-                    <label for="position">포지션</label>
-                    <input type="text" class="form-control" id="position" placeholder="웹 개발자" name="position" required>
-                </div>
 
-                <div class="mb-3">
-                    <label for="skill">업무 스킬</label>
-                    <input type="text" class="form-control" id="skill" placeholder="java,python" name="skill" required>
-                </div>
-
-                <div class="mb-2">
-                    <label for="introduction">간단 소개글</label>
-                    <input type="text" class="form-control" id="introduction" placeholder="안녕하세요, 저는~~" name="introduction" required>
-                </div>
-
-                <button class="btn btn-primary btn-lg btn-block">소개글 수정</button>
+                <button class="btn btn-primary btn-lg btn-block">수정</button>
             </form>
         </div>
     </div>
