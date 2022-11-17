@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로필 사진 편집</title>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        body {
+            min-height: 100vh;
+            background: -webkit-gradient(linear, left bottom, right top, from(#5c636a), to(#1e2125));
+
+        }
+        .input-form {
+            max-width: 680px;
+
+            margin-top: 80px;
+            padding: 32px;
+
+            background: #fff;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+            -webkit-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+            -moz-box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 20px 0 rgba(0, 0, 0, 0.15)
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+    <div class="input-form-backgroud row">
+        <div class="input-form col-md-12 mx-auto">
+            <h4 class="mb-3">포트폴리오 등록</h4>
+            <form method="post" enctype="multipart/form-data" class="validation-form">
+
+                <div class="mb-3">
+                    <label for="title">제목</label>
+                    <input type="text" class="form-control" id="title" placeholder="title" name="title" required>
+                </div>
+                <div class="mb-3">
+                    <label for="content">설명</label>
+                    <input type="text" class="form-control" id="content" placeholder="content" name="content" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="file">첨부파일</label>
+                    <input type="file" class="form-control" id="file" placeholder="file" name="file" required>
+                </div>
+
+
+                <button class="btn btn-primary btn-lg btn-block">등록</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

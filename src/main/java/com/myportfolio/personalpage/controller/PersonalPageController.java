@@ -1,7 +1,10 @@
 package com.myportfolio.personalpage.controller;
 
+import com.myportfolio.personalpage.model.AddPortfolioInput;
 import com.myportfolio.personalpage.model.EditIntroductionInput;
+import com.myportfolio.personalpage.model.Portfolio;
 import com.myportfolio.personalpage.service.PersonalIntroductionService;
+import com.myportfolio.personalpage.service.PersonalPortfolioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,6 +19,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 
 
 @RequiredArgsConstructor
@@ -23,6 +27,7 @@ import java.util.HashMap;
 public class PersonalPageController {
 
     private final PersonalIntroductionService personalIntroductionService;
+    private final PersonalPortfolioService personalPortfolioService;
 
     @GetMapping("/personal/home")
     public String personalHome(Model model) {
@@ -35,19 +40,61 @@ public class PersonalPageController {
             personalIntroductionService.initPersonalIntroduction(currentUserId);
         }
 
+        List<HashMap<String,Object>> portfolioList = personalPortfolioService.getPersonalPortfolioList();
+
+        HashMap<String,Object> IntroductionData = personalIntroductionService.getPersonalIntroductionData(currentUserId);
+        HashMap<String,Object> emailAndPhone = personalIntroductionService.getEmailAndPhone(currentUserId);
+
         String filePathPrefix = "/userprofile/";
         String fileName = currentUserId + "profile.png";
 
         model.addAttribute("filepath",filePathPrefix + fileName);
-
-        HashMap<String,Object> IntroductionData = personalIntroductionService.getPersonalIntroductionData(currentUserId);
         model.addAttribute("introduction",IntroductionData);
-        HashMap<String,Object> emailAndPhone = personalIntroductionService.getEmailAndPhone(currentUserId);
         model.addAttribute("emailandphone",emailAndPhone);
+        model.addAttribute("portfolioList", portfolioList);
 
 
         return "/personal/home";
     }
+
+
+    @GetMapping("/personal/deletePortfolio")
+    public String deleteAllPortfolio(Model model) {
+        personalPortfolioService.deleteAll();
+        return "redirect:/personalPage/portfolio";
+    }
+
+    @GetMapping("/personal/addPortfolio")
+    public String addPortfolio(){
+        return "personal/addPortfolio";
+    }
+    @PostMapping("/personal/addPortfolio")
+    public String addPortfolio2(AddPortfolioInput addPortfolioInput, MultipartFile file){
+
+
+
+        personalPortfolioService.addPortfolio(addPortfolioInput,file);
+
+
+        return "redirect:/personalPage/portfolio";
+    }
+
+
+    @GetMapping("/personalPage/portfolio")
+    public String portfolio(Model model){
+
+
+        if(personalPortfolioService.isAnyPortfolioExist()){
+            model.addAttribute("isExist",true);
+
+            model.addAttribute("portfolioList",personalPortfolioService.getPersonalPortfolioList());}
+        else{
+            model.addAttribute("isExist",false);
+        }
+
+        return "personal/portfolio";
+    }
+
     @GetMapping("/personalPage/profile")
     public String profile(){
         return "personal/profileConfigPage";
