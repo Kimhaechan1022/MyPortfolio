@@ -54,6 +54,7 @@ public class PersonalPageController {
         model.addAttribute("portfolioList", portfolioList);
 
 
+
         return "/personal/home";
     }
 
